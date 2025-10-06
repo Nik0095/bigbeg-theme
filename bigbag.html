@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BigBag — Виробництво Біг-Бегів в Україні</title>
+  <style>
+    /* Основні стилі */
+    /* ======================================================================================================================================================== */
+    .header {
+      padding-block: 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header__container {
+      max-inline-size: 1200px;
+      margin: 0 auto;
+    }
+
+    .header__body {
+      padding: 24px;
+      column-gap: 46px;
+      row-gap: 5px;
+      border-radius: 20px;
+      background-color: #192131;
+      box-shadow:
+        0px 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0px 0px 15px 0px rgba(0, 0, 0, 0.07);
+
+      display: grid;
+      align-items: center;
+      grid-template-columns: auto 1fr auto;
+    }
+
+    .header__link-logo {
+      color: #fff;
+      position: relative;
+      z-index: 3;
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 110%;
+      transition: color 0.3s;
+    }
+
+    .header__link-logo:hover {
+      color: #ff6666;
+    }
+
+    .header__menu {}
+
+    .menu {}
+
+    .menu__body {}
+
+    .menu__button {
+      display: none;
+    }
+
+    .menu__list {
+      justify-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 32px;
+      row-gap: 5px;
+    }
+
+    .menu__item {}
+
+    .menu__link {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    .menu__link:hover {
+      color: #ff6666;
+    }
+
+    .header__actions {}
+
+    .actions-header {
+      display: flex;
+      column-gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 3;
+
+    }
+
+    .actions-header__button {
+      color: #fff;
+    }
+
+    .actions-header__button:hover {
+      color: #ff6666;
+    }
+
+    .icon-menu {
+      display: none;
+    }
+
+    @media (max-width: 991.98px) {
+      .header {
+        padding-block: 15px;
+      }
+
+      .header__body {
+        padding: 15px;
+        column-gap: 25px;
+      }
+
+      .menu__list {
+        column-gap: 20px;
+      }
+
+      .actions-header {
+        column-gap: 10px;
+      }
+
+      .actions-header__button.button--mini {
+        padding-inline: 15px;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .menu {
+        position: fixed;
+        inset-inline-start: -100%;
+        inset-block-start: 0;
+        block-size: 100%;
+        inline-size: 100%;
+
+        transition: inset-inline-start 0.3s;
+
+        overflow: auto;
+
+        background-color: #0f172a;
+
+        padding-block-start: 105px;
+        padding-inline: 15px;
+        padding-block-end: 30px;
+      }
+
+      .menu::before {
+        position: fixed;
+        content: "";
+        z-index: 2;
+        block-size: 64px;
+        inset-block-start: 15px;
+        inset-inline-start: 15px;
+        inset-inline-end: 15px;
+
+        transition: visibility 0.3s;
+        visibility: hidden;
+
+        border-radius: 20px;
+        background-color: #192131;
+        box-shadow:
+          0px 25px 50px -12px rgba(0, 0, 0, 0.25),
+          0px 0px 15px 0px rgba(0, 0, 0, 0.07);
+      }
+
+      .open-menu .menu {
+        inset-inline-start: 0;
+      }
+
+      .open-menu .menu::before {
+        visibility: visible;
+      }
+
+      .menu__list {
+        flex-direction: column;
+        align-items: flex-end;
+        row-gap: 25px;
+        padding-inline-end: 18px;
+      }
+
+      .menu__link {
+        font-size: 30px;
+      }
+
+      .icon-menu {
+        display: block;
+        position: relative;
+        inline-size: 48px;
+        block-size: 48px;
+        z-index: 3;
+      }
+
+      .icon-menu span,
+      .icon-menu::before,
+      .icon-menu::after {
+        content: "";
+        position: absolute;
+        block-size: 4px;
+        border-radius: 4px;
+        background-color: #fff;
+
+        transition: all 0.3s;
+      }
+
+      .icon-menu::before,
+      .icon-menu::after {
+        inline-size: 15px;
+      }
+
+      .icon-menu::before {
+        inset-inline-start: 10px;
+        inset-block-start: 14px;
+      }
+
+      .icon-menu::after {
+        inset-inline-end: 10px;
+        inset-block-end: 14px;
+      }
+
+      .icon-menu span {
+        inset-inline-start: 50%;
+        inset-block-start: 50%;
+        transform: translate(-50%, -50%);
+        inline-size: 28px;
+      }
+
+      .open-menu .icon-menu span {
+        transform: translate(-50%, -50%) rotate(-45deg);
+        inline-size: 33px;
+      }
+
+      .open-menu .icon-menu::before {
+        transform: translate(0px, 1px) rotate(45deg);
+      }
+
+      .open-menu .icon-menu::after {
+        transform: translate(0, -2px) rotate(45deg);
+      }
+
+      .header__body {
+        padding-block: 8px;
+        padding-inline-start: 24px;
+        padding-inline-end: 8px;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 439.98px) {
+      .menu__list:not(:last-child) {
+
+        margin-bottom: 30px;
+      }
+
+      .menu__button {
+        flex: row;
+        display: block;
+        color: #fff;
+      }
+
+      .menu__button:not(:last-child) {
+        margin-bottom: 15px;
+
+      }
+
+      .actions-header__button {
+        display: none;
+      }
+    }
+
+
+    /* ===================================================================== */
+
+    /* Декоративний поділ */
+    .divider {
+      border: 1px solid #ff6666;
+      width: 250px;
+      margin: 10px auto;
+    }
+
+    .order-button {
+      background-color: #ff6666;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: block;
+      margin: 40px auto 0;
+      font-size: 1rem;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #e9e9e99e;
+      color: #333;
+    }
+
+
+
+    .main {
+      /* max-width: 1200px; */
+      margin: 0 auto;
+      padding: 0;
+      /* background-color: #f8f9fa; */
+      align-items: center;
+      justify-content: space-between;
+    }
+
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      height: 100vh;
+      /* висота секції */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero__background {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero__image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0.9);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      padding: 1rem;
+    }
+
+    .hero__title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: #343a40 1px 1px 4px;
+    }
+
+    .hero__subtitle {
+      font-size: 3.5rem;
+      text-shadow: #343a40 1px 1px 4px;
+    }
+
+    .coral {
+      color: #FF6666;
+      /* той самий coral */
+      font-weight: bold;
+    }
+
+    /* адаптивність */
+    @media (max-width: 767px) {
+      .hero {
+        position: relative;
+        flex-direction: column;
+        /* картинка зверху, текст знизу */
+        height: auto;
+        padding: 0;
+        text-align: center;
+      }
+
+      .hero__title {
+        font-size: 1.8rem;
+      }
+
+      .hero__subtitle {
+        font-size: 1.2rem;
+      }
+    }
+
+
+
+
+    .content_header {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .content__availability {
+      color: #d5d5d5;
+      font-weight: bold;
+      /* margin-bottom: 0.5rem; */
+      font-size: 4.5rem;
+
+    }
+
+    .content__title {
+      font-size: 3.5rem;
+      /* margin-bottom: 1rem; */
+      text-shadow: #343a40 1px 1px 4px;
+    }
+
+    .content__description {
+      font-size: 1.6rem;
+      color: #555;
+    }
+
+    /* -------------------------------- */
+
+    .product {
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      /* секція на всю висоту екрану */
+      display: flex;
+      align-items: center;
+      /* центрування по вертикалі */
+      justify-content: center;
+      /* центрування по горизонталі */
+      text-align: center;
+      /* центрування тексту */
+      color: #fff;
+
+    }
+
+    .product__background {
+      position: absolute;
+      inset: 0;
+      background: url("img/big-title-2.jpg") no-repeat center/cover;
+      z-index: 0;
+      filter: brightness(0.7);
+      background-attachment: fixed;
+    }
+
+    .product__container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .product__title {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      color: #ff6666;
+      text-shadow: #343a40 1px 1px 4px;
+      justify-content: center;
+
+    }
+
+    .product__specs {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product__availability {
+      font-weight: bold;
+      color: #ff6666;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      text-shadow: #343a40 1px 1px 4px;
+      justify-content: center;
+    }
+
+    .product__description p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    /* адаптив */
+    @media (max-width: 768px) {
+      .product {
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+
+      .product__title {
+        font-size: 1.8rem;
+      }
+    }
+
+
+    /* -------------------------------- */
+    .product-info {
+      padding: 4rem 1rem;
+      /* background-color: #f8f9fa; */
+      /* можна зробити свій фон */
+    }
+
+    .product-info__container {
+      display: flex;
+      max-width: 1000px;
+      margin: 0 auto;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      /* для адаптиву */
+    }
+
+    .product-info__video,
+    .product-info__content {
+      flex: 1 1 400px;
+      /* мінімальна ширина 500px */
+    }
+
+    .product-info__video video {
+      width: 60%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-info__title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .product-info__text {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* адаптив для малих екранів */
+    @media (max-width: 768px) {
+      .product-info__container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .product-info__video,
+      .product-info__content {
+        flex: 1 1 100%;
+      }
+
+      .product-info__title {
+        font-size: 1.5rem;
+      }
+    }
+
+
+
+    /* ---------------------------------- */
+
+
+    .price {
+      position: relative;
+      padding: 3rem 1rem;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .price__background {
+      position: absolute;
+      inset: 0;
+      /* розтягується на всю ширину і висоту секції */
+      background: url("img/42b6aa36-2e29-49e4-b421-6e38d4a7f23b-2.webp") no-repeat center/cover;
+      z-index: 0;
+      filter: brightness(0.8);
+      background-attachment: fixed;
+
+    }
+
+    .price__container {
+      position: relative;
+      z-index: 1;
+      /* щоб текст був поверх фону */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+
+    }
+
+    .price__info {
+      max-width: 800px;
+      /* або будь-яке значення */
+      margin: 0 auto;
+      /* центрує блок */
+      text-align: center;
+      /* якщо треба, щоб текст теж був по центру */
+    }
+
+    .price__title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .price__description p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #f0f0f0;
+    }
+
+    .price__subtitle {
+      margin: 2rem 0 1rem;
+      font-size: 1.5rem;
+    }
+
+    .price__table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(0, 0, 0, 0.5);
+      /* напівпрозорий фон для читабельності */
+    }
+
+    .price__table th,
+    .price__table td {
+      border: 1px solid #fff;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+
+    .flex-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+
+
+    /* Адаптивний дизайн */
+    @media (max-width: 768px) {
+
+      header .container,
+      footer .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .banner h2 {
+        font-size: 24px;
+        padding: 10px;
+      }
+    }
+
+
+
+    /* delivery */
+
+    .delivery {
+      padding: 2rem 1rem;
+      background-color: #FF6666;
+      /* можна зробити свій фон */
+      max-width: 100%;
+      min-height: 300px;
+      margin: 0 auto;
+    }
+
+    .delivery h2 {
+      text-align: center;
+      color: #d5d5d5;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+
+    .delivery__image {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      /* висота під зображення */
+    }
+
+    .delivery__image img {
+      position: absolute;
+      top: 0;
+      left: -150px;
+      /* стартує за межами екрана */
+      width: 100px;
+      animation: moveAcross 6s linear infinite;
+    }
+
+    /* Анімація руху по всій ширині екрана */
+    @keyframes moveAcross {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(110vw);
+        /* проїжджає через весь екран */
+      }
+    }
+
+    .delivery__text {
+      max-width: 600px;
+      margin: 2rem auto 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .delivery p {
+      font-size: 1.2rem;
+      color: #fff;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* адаптив */
+    /* Для мобілок відключаємо анімацію */
+    @media (max-width: 768px) {
+      .delivery__image img {
+        position: static;
+        animation: none;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    /* -----Delivery Section----- */
+
+    .flex-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      margin: 100px auto;
+    }
+
+    .image-col {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+      /* щоб друге зображення можна було позиціонувати */
+    }
+
+    .image-col img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.4s ease;
+      will-change: transform;
+
+    }
+
+    /* Головне зображення */
+    .img-main {
+      max-width: 350px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      filter: brightness(0.8);
+    }
+
+    /* Маленьке зображення, яке вище і трохи зліва */
+    .img-small {
+      max-width: 150px;
+      position: absolute;
+      top: -40px;
+      left: 430px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      filter: brightness(0.8);
+    }
+
+    .text-col {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .text-col h3 {
+      font-size: 1.5rem;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    @media (max-width: 768px) {
+      .flex-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .img-main {
+        max-width: 60%;
+      }
+
+      .img-small {
+        display: none;
+      }
+
+      .img-main {
+        animation: none;
+      }
+    }
+
+
+
+
+
+    .partners {
+      text-align: center;
+      padding: 60px 20px;
+      background: #f9f9f9;
+    }
+
+    .partners h2 {
+      font-size: 28px;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .partners__list {
+
+      max-width: 1200px;
+      padding: 0 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 30px;
+      justify-items: center;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .partners__list span {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #d5d5d5;
+      /* margin: 30px; */
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .partners__list span:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+
+    .partners__list span:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .partners__list span:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+
+    .partners__list span:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__container">
+      <div class="header__body">
+        <a href="#" class="header__link-logo">weeb</a>
+        <nav class="header__menu menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="#" class="menu__link">About Us</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Solutions</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Pricing</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Resources</a>
+            </li>
+          </ul>
+          <a href="#" class="menu__button button button--transparent button--mini">Log In</a>
+          <a href="#" class="menu__button button button--mini">Join Now</a>
+        </nav>
+        <div class="header__actions actions-header">
+          <a href="#" class="actions-header__button button button--transparent button--mini">Log In</a>
+          <a href="#" class="actions-header__button button button--mini">Join Now</a>
+          <button type="button" class="actions-header__icon-menu icon-menu"><span></span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+  <section class="hero">
+    <div class="hero__background">
+      <img src="img/7v184m.webp" alt="Big-bag" class="hero__image">
+    </div>
+
+    <div class="hero__content">
+      <h1 class="hero__title">Купити Біг-Бег в Україні</h1>
+      <h2 class="hero__subtitle">
+        Офіційний представник в Україні <br>
+        <span class="coral">Hope International</span>
+      </h2>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="content_header">
+      <div class="content__availability">Завжди в наявності</div>
+      <h2 class="content__title coral">Біг-бег з верхнім фартухом</h2>
+
+      <div class="content__description">
+        <p>Біг-бег з верхнім фартухом, вміщує<span class="coral"> 1000 – 1200 кг</span>, залежить від завантаженого
+          продукта</p>
+      </div>
+    </div>
+
+
+    <section class="product">
+      <div class="product__background"></div>
+
+      <div class="product__container">
+        <header class="product__header">
+          <h2 class="product__title">Біг-Бег</h2>
+          <p class="product__specs">
+            РР 140 г/м², розмір 90х90х200 см, верхній фартух, глухе дно, 4 стропи по 35см.
+          </p>
+          <p class="product__availability">Завжди в наявності на складі у Дніпрі</p>
+        </header>
+
+        <div class="product__description">
+          <p>
+            Для фасування таких продуктів як: шрот соняшнику, шрот ріпаку, ріпак,
+            соєвий шрот, макуха, дерев’яна пелета, пелети з лушпиння соняшника,
+            кукурудза, рис, соя, насіння гірчиці, крупи (манна, перлова, вівсяна),
+            ячмінь, сочевиця, комбікорм, добрива.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Відео-презентація -->
+    <section class="product-info">
+      <div class="product-info__container">
+        <div class="product-info__video">
+          <video controls poster="img/video-poster.webp" src="img/WhatsApp-Video-2023-05-23-at-15.12.57.mp4"></video>
+        </div>
+        <div class="product-info__content">
+          <h2 class="product-info__title">Відео-презентація Біг-Бег</h2>
+          <hr class="divider">
+          <p class=" product-info__text">
+            Біг-Бег є зручним засобом для регулювання дозування матеріалу. Він може бути обладнаний спеціальними
+            клапанами або механізмами, що дозволяють контролювати вигрузку продукту з контейнера. Це особливо важливо
+            при використанні сипучих матеріалів, де точне дозування може бути критичним.
+          </p>
+          <button class="order-button"
+            style="background-color: #ff6666; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-top: 10px; font-size: 1rem;"
+            onclick="window.location.href=''">замовити рахунок</button>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section class="price">
+      <div class="price__background"></div> <!-- фон -->
+
+      <div class="price__container">
+        <div class="price__info wrapper">
+          <div class="price__header">
+            <h2 class="price__title coral">Спеціальна Пропозиція</h2>
+          </div>
+
+          <div class="price__description">
+            <p>Знижки на Біг-Бег будуть розраховані залежно від обсягу вашого замовлення. Чим більше Біг-Бег ви
+              замовляєте, тим більша знижка застосовується до загальної суми. Ми гарантуємо, що наші ціни залишаться
+              конкурентоспроможними і <span class="coral">ви отримаєте якісні Біг-бег</span> за вигідними умовами.</p>
+          </div>
+        </div>
+        <div class="price__table-wrapper">
+          <h3 class="price__subtitle">Гнучка система знижок</h3>
+          <table class="price__table">
+            <thead>
+              <tr>
+                <th class="coral">Кількість</th>
+                <th class="coral">Ціна за одиницю</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>До 50 шт.</td>
+                <td>235 грн.</td>
+              </tr>
+              <tr>
+                <td>50–100 шт.</td>
+                <td>230 грн.</td>
+              </tr>
+              <tr>
+                <td>100 до 200 шт.</td>
+                <td>225 грн.</td>
+              </tr>
+              <tr>
+                <td>200–500 шт.</td>
+                <td>220 грн.</td>
+              </tr>
+              <tr>
+                <td class="coral">від 500 шт.</td>
+                <td class="coral">ціна за домовленістю</td>
+              </tr>
+
+            </tbody>
+          </table>
+          <button class="order-button" onclick="window.location.href=''">замовити рахунок</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section flex-section">
+      <div class="image-col slide-in-fwd-center">
+        <img src="img/20230614_134352-768x576-2.webp" alt="Зображення 1" loading="lazy">
+      </div>
+      <div class="text-col">
+        <h3 class="coral">1. Застосування:</h3>
+        <p>
+          <span class="coral">Біг-бег 90х90х200 см вміщує 1000 – 1200 кг.</span> при фасуванні таких продуктів як :
+          шрот
+          соняшнику, шрот ріпаку,
+          ріпак, соєвий шрот, макуха, дерев’яна пелета, пелети з лушпиння сонячника, кукурудза, рис, соя, насіння
+          гірчиці,
+          крупи (манна, перлова, вівсяна), ячмінь, сочевиця, комбікорм, добрива.
+        </p>
+      </div>
+    </section>
+
+    <section class="section flex-section reverse">
+      <div class="text-col">
+        <h3 class="coral">2. Гнучкість в застосуванні:</h3>
+        <p>Біг-Бег пристосовані для різноманітних використань. Вони можуть бути використані для перевезення сипучих
+          матеріалів, піску, цементу, каміння, вугілля, зерна, хімічних речовин та інших матеріалів. Ви можете
+          замовити
+          big-bagи зі спеціальними характеристиками, включаючи водонепроникність або антистатичні властивості.</p>
+      </div>
+      <div class="image-col slide-in-fwd-center">
+        <img src="img/20230614_134401-768x576.jpg-2.webp" alt="Зображення 2 " loading="lazy">
+      </div>
+    </section>
+
+    <section class="section flex-section">
+      <div class="image-col slide-in-fwd-center">
+        <img src="img/20230614_134258-scaled-e1687174996961-1024x768-2.webp" alt="Зображення 1" loading="lazy">
+      </div>
+      <div class="text-col">
+        <h3 class="coral">3. Висока міцність- 140г/м3:</h3>
+        <p>Наші Біг-Бег виготовляються з якісних та міцних матеріалів, що забезпечує їх довговічність та витривалість.
+          Вони можуть витримати великі навантаження та забезпечують надійний захист вашого товару.</p>
+      </div>
+    </section>
+
+    <section class="delivery">
+      <h2>Доставка по Україні за 48 годин</h2>
+      <div class="delivery__image">
+        <img src="img/images-2-removebg-preview.png" alt="Доставка" loading="lazy">
+      </div>
+      <p>
+        Доставка будь яким перевізником по замовленню покупця
+      </p>
+    </section>
+
+    <section class="section flex-section">
+      <div class="image-col">
+        <img src="img/imgonline-com-ua-Compressed-oAKs83OGnrM4lMg-2.webp" alt="Зображення 1" class="img-main"
+          loading="lazy">
+        <img src="img/images.jpeg.webp" alt="Зображення 2" class="img-small" loading="lazy">
+      </div>
+      <div class="text-col">
+        <h2>Біг Бег</h2>
+        <hr class="divider">
+        <p>
+          Біг-Бег, також відомий як контейнер з гнучкими стінками, є універсальним засобом для зберігання і
+          транспортування різноманітних матеріалів. Використання big-bag стає все більш поширеним у різних галузях
+          промисловості та сільського господарства, завдяки своїй високій ефективності і зручності.
+        </p>
+      </div>
+    </section>
+    <section class="partners">
+      <h2>Ми постачаємо для:</h2>
+      <hr class="divider">
+      <div class="partners__list">
+        <span>Королівський смак</span>
+        <span>Потоки</span>
+        <span>Добра Олія</span>
+        <span>Укролія</span>
+      </div>
+    </section>
+
+  </main>
+  <script>
+
+    let documentActions = (e) => {
+      const targetElement = e.target
+      if (targetElement.closest('.icon-menu')) {
+        document.documentElement.classList.toggle('open-menu')
+      }
+    }
+    document.addEventListener('click', documentActions)
+
+
+    const options = {
+      root: null,
+      rootMargin: "0px 0px 0px 0px",
+      // Відсоток від розміру об'єкту.
+      // При появі якого спрацьовує подія
+      // Де 0 це будь яка поява
+      // 1 це повна поява об'кта в в'юпорті
+      threshold: 0.2,
+    }
+    const callback = (entries, observer) => {
+      entries.forEach(entry => {
+        const currentElement = entry.target
+        if (entry.isIntersecting) {
+          currentElement.classList.add('--animate')
+          //console.log('я тебе бачу')
+        } else {
+          currentElement.classList.remove('--animate')
+          //console.log('я тебе не бачу')
+        }
+      })
+    }
+    const observer = new IntersectionObserver(callback, options)
+
+    const animElements = document.querySelectorAll('[class*="--anim"]')
+    animElements.forEach(animElement => {
+      observer.observe(animElement)
+    }) 
+  </script>
+
+
+</body>
+
+</html>
