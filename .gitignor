@@ -1,0 +1,74 @@
+# ==========================================
+# OS files
+# ==========================================
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Node / npm / build tools
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ==========================================
+# Build / compiled files
+# ==========================================
+dist/
+build/
+.cache/
+*.map
+
+# ==========================================
+# IDE / Editors
+# ==========================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# Composer / PHP dependencies (if not part of theme)
+# ==========================================
+vendor/
+composer.lock
+
+# ==========================================
+# WordPress core and uploads (if theme inside full WP)
+# ==========================================
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/ai1wm-backups/
+
+# ==========================================
+# Environment / config
+# ==========================================
+.env
+.env.local
+.env.production
+.env.development
+
+# ==========================================
+# OS trash / temp
+# ==========================================
+*.tmp
+*.swp
+*.bak
+*.log
+
+# ==========================================
+# SASS / CSS cache
+# ==========================================
+.sass-cache/
+*.css.map
+
+# ==========================================
+# PHPStorm / NetBeans
+# ==========================================
+nbproject/
+.idea/
